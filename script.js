@@ -1,6 +1,9 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+var saveButtonEl1 = document.querySelector(".saveBtn");
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -9,6 +12,32 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
+
+  var saveUserInput = function(event){
+      console.log(event.target);
+      selectedBtn = event.target;
+      parentEl1 = event.target.parentNode.nodeName.id;
+      console.log(parentEl1);
+
+      divCollectionEl1 = document.body.children[1].children;
+      
+      for (var i = 0; i < divCollectionEl1.length; i++) {
+        console.log(divCollectionEl1[i].id);
+        if (divCollectionEl1[i].id === "hour-11") {
+          var tag = "hour-11";
+          console.log("Button associated with div tag with id: " + tag + " was selected")
+        }
+      }
+
+
+  }
+
+
+
+
+  saveButtonEl1.addEventListener("click", saveUserInput);
+  
+  
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
