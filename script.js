@@ -2,7 +2,6 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-var saveButtonEl1 = document.querySelector(".saveBtn");
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -11,31 +10,34 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
+  // 
+  var saveButtonEl1 = document.querySelectorAll(".saveBtn");
+  var saveUserInput = function(event) {
 
-  var saveUserInput = function(event){
-      console.log(event.target);
-      selectedBtn = event.target;
-      parentEl1 = event.target.parentNode.nodeName.id;
-      console.log(parentEl1);
+    event.stopPropagation();
 
-      divCollectionEl1 = document.body.children[1].children;
+    var parentEl1 = this.parentNode.id;
+
+   console.log(parentEl1);
+    
+
+     // divCollectionEl1 = document.body.children[1].children;
       
-      for (var i = 0; i < divCollectionEl1.length; i++) {
-        console.log(divCollectionEl1[i].id);
-        if (divCollectionEl1[i].id === "hour-11") {
-          var tag = "hour-11";
-          console.log("Button associated with div tag with id: " + tag + " was selected")
-        }
-      }
+    //  for (var i = 0; i < divCollectionEl1.length; i++) {
+      //  console.log(divCollectionEl1[i].id);
+        //if (divCollectionEl1[i].id === "hour-11") {
+         // var tag = "hour-11";
+          //console.log("Button associated with div tag with id: " + tag + " was selected")
+       // }
+      //}
 
-
+  
   }
 
-
-
-
-  saveButtonEl1.addEventListener("click", saveUserInput);
+  for (var i = 0; i < saveButtonEl1.length; i++) {
+    saveButtonEl1[i].addEventListener("click", saveUserInput);
+}
+  
   
   
   // TODO: Add code to apply the past, present, or future class to each time
