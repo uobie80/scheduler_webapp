@@ -15,7 +15,8 @@ $(function () {
 
     var saveUserInput = function(event) {
       /*
-       This function handles saves the user input so that it persists when the page is refreshed.
+       This function saves the user input- 
+       -so that it persists when the page is refreshed.
       */
 
       event.stopPropagation(); //This statement was added to prevent other click handlers further up from receiving the click event
