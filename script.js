@@ -12,7 +12,7 @@ $(function () {
   // useful when saving the description in local storage?
   // 
     var saveButtonEl1 = document.querySelectorAll(".saveBtn"); //This statement obtains all the save button elements
-
+    var key ="";
     var saveUserInput = function(event) {
       /*
        This function saves the user input- 
@@ -22,6 +22,7 @@ $(function () {
       event.stopPropagation(); //This statement was added to prevent other click handlers further up from receiving the click event
 
       var divEl1Id = this.parentNode.id; //This statement obtains the id of the DIV which contains the button that was clicked
+      key = divEl1Id;
       var textAreaEl1 = this.parentNode.children[1]; //This statement obtains the textarea element that corresponds to the button that was clicked
       var userInput = textAreaEl1.value;  //This statement gets the value of the user input
 
@@ -30,7 +31,7 @@ $(function () {
       console.log(userInput); //This statement outputs the value of the user input
     
       localStorage.setItem(divEl1Id, userInput); //This statement saves the user input associated with the id of the div element that contains the input field into local storage
-  
+      changeElementAttribute();
     }
   
   //This statement attaches the on-click handler to each of the save buttons
@@ -46,11 +47,23 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
+
+  var changeElementAttribute = function() {
+
     var currentHour = dayjs().hour(); //This statement uses Day.js to obtain the current hour of the day in 24 hour time
-    console.log(currentHour); 
+    var hourFromLocalStorage = key.substring(5); //This statement obtains the hour associated with the save button that was clicked.
+    var descFromLocalStorage = localStorage.getItem(key);
 
-    
+    if (currentHour < hourFromLocalStorage) {
 
+    } else if (currentHour > hourFromLocalStorage) {
+
+    } else {
+
+    }
+   
+
+  }
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
