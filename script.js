@@ -11,23 +11,28 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   // 
-    var saveButtonEl1 = document.querySelectorAll(".saveBtn");
+    var saveButtonEl1 = document.querySelectorAll(".saveBtn"); //get all save button elements
+
     var saveUserInput = function(event) {
+      /*
+       This function handles saves the user input so that it persists when the page is refreshed.
+      */
 
-      event.stopPropagation();
+      event.stopPropagation(); //This statement was added to prevent other click handlers further up from receiving the click event
 
-      var parentEl1 = this.parentNode.id;
-      var textAreaEl1 = this.parentNode.children[1];
+      var parentEl1 = this.parentNode.id; //This statement obtains the id of the DIV which contains the button that was clicked
+      var textAreaEl1 = this.parentNode.children[1]; //This statement obtains the textarea element that corresponds to the button that was clicked
 
-      console.log(parentEl1);
-      console.log(textAreaEl1);
+      console.log(parentEl1); //This statement outputs the id value of the DIV 
+      console.log(textAreaEl1); //This statement outputs the textarea element associated with the button which was clicked
     
 
   
 
   
   }
-
+  
+  //This statement attaches the on-click handler to each of the save buttons
   for (var i = 0; i < saveButtonEl1.length; i++) {
     saveButtonEl1[i].addEventListener("click", saveUserInput);
 }
