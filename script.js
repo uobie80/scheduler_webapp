@@ -23,7 +23,7 @@ $(function () {
 
       var divEl1Id = this.parentNode.id; //This statement obtains the id of the DIV which contains the button that was clicked
       var textAreaEl1 = this.parentNode.children[1]; //This statement obtains the textarea element that corresponds to the button that was clicked
-      var userInput = textAreaEl1.value;  //This statement get the value of the user input
+      var userInput = textAreaEl1.value;  //This statement gets the value of the user input
 
       console.log(divEl1Id); //This statement outputs the id value of the DIV 
       console.log(textAreaEl1); //This statement outputs the textarea element associated with the button which was clicked
@@ -31,12 +31,12 @@ $(function () {
     
       localStorage.setItem(divEl1Id, userInput); //This statement saves the user input associated with the id of the div element that contains the input field into local storage
   
-  }
+    }
   
   //This statement attaches the on-click handler to each of the save buttons
   for (var i = 0; i < saveButtonEl1.length; i++) {
     saveButtonEl1[i].addEventListener("click", saveUserInput);
-}
+  }
   
   
   
@@ -46,6 +46,11 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
+    var currentHour = dayjs().hour(); //This statement uses Day.js to obtain the current hour of the day in 24 hour time
+    console.log(currentHour); 
+
+    
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
