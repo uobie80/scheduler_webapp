@@ -29,6 +29,7 @@ $(function () {
       console.log(textAreaEl1); //This statement outputs the textarea element associated with the button which was clicked
       console.log(userInput); //This statement outputs the value of the user input
     
+      localStorage.setItem(divEl1Id, userInput); //This statement saves the user input associated with the id of the div element that contains the input field into local storage
   
   }
   
