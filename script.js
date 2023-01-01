@@ -21,11 +21,11 @@ $(function () {
 
       event.stopPropagation(); //This statement was added to prevent other click handlers further up from receiving the click event
 
-      var parentEl1 = this.parentNode.id; //This statement obtains the id of the DIV which contains the button that was clicked
+      var divEl1Id = this.parentNode.id; //This statement obtains the id of the DIV which contains the button that was clicked
       var textAreaEl1 = this.parentNode.children[1]; //This statement obtains the textarea element that corresponds to the button that was clicked
       var userInput = textAreaEl1.value;  //This statement get the value of the user input
 
-      console.log(parentEl1); //This statement outputs the id value of the DIV 
+      console.log(divEl1Id); //This statement outputs the id value of the DIV 
       console.log(textAreaEl1); //This statement outputs the textarea element associated with the button which was clicked
       console.log(userInput); //This statement outputs the value of the user input
     
