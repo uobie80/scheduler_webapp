@@ -21,15 +21,7 @@ $(function () {
    console.log(parentEl1);
     
 
-     // divCollectionEl1 = document.body.children[1].children;
-      
-    //  for (var i = 0; i < divCollectionEl1.length; i++) {
-      //  console.log(divCollectionEl1[i].id);
-        //if (divCollectionEl1[i].id === "hour-11") {
-         // var tag = "hour-11";
-          //console.log("Button associated with div tag with id: " + tag + " was selected")
-       // }
-      //}
+  
 
   
   }
