@@ -12,7 +12,7 @@ $(function () {
   // useful when saving the description in local storage?
   // 
     var saveButtonEl1 = document.querySelectorAll(".saveBtn"); //This statement obtains all the save button elements
-    
+   
     var saveUserInput = function(event) {
       /*
        This function saves the user input- 
@@ -31,7 +31,7 @@ $(function () {
       console.log(userInput); //This statement outputs the value of the user input
     
       localStorage.setItem(divEl1Id, userInput); //This statement saves the user input associated with the id of the div element that contains the input field into local storage
-      changeElementAttribute(divTimeBlockEl1, divEl1Id, textAreaEl1);
+      changeElementAttribute(divTimeBlockEl1, divEl1Id);
     }
   
   //This statement attaches the on-click handler to each of the save buttons
@@ -64,7 +64,7 @@ $(function () {
 
 
 
-  var changeElementAttribute = function(divElement, key, textAreaElement) {
+  var changeElementAttribute = function(divElement, key) {
 
     /*
      This function uses day.js library to get the current hour of the day in 24 hour format.
@@ -91,7 +91,7 @@ $(function () {
       modifyElementClass(divElement, className);
     }
    
-    textAreaElement.value = setInputValue(key);
+    
 
   }
 
@@ -102,14 +102,18 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 
-  var setInputValue = function(objkey) {
 
-    var descFromLocalStorage = localStorage.getItem(objkey);
+    const localStorageItems = { ...localStorage }; //This statement gets all the key value pair items in local storage and stores it into a new object
+   // console.log(localStorageItems);
     
-    return descFromLocalStorage;
+     //loop through all entries in local storage
+    for (const [key, value] of Object.entries(localStorageItems)) { 
+      var divElement = document.getElementById(`${key}`);  //This statement obtains the div time block associated with the unique id.
+      var textAreaElement = divElement.children[1]; // This statement obtains the textarea element associated with the div time block element for the save button that was clicked.
+      textAreaElement.value = `${value}`; // this statement sets the value of the text area to the corresponding value for the id pulled from local storage. 
+      changeElementAttribute(divElement, `${key}`); //This statement calls a function to set the background color of the textarea input.
+      
+    }
 
 
-  }
-
-  
 });
