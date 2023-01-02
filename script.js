@@ -48,18 +48,38 @@ $(function () {
   // current hour in 24-hour time?
   //
 
+  var modifyElementClass = function(element, className) {
+
+   var currentCSSClass = element.classList[2];
+   element.classList.remove(currentCSSClass);
+   element.classList.add(className);
+
+  }
+
+
+
   var changeElementAttribute = function() {
 
     var currentHour = dayjs().hour(); //This statement uses Day.js to obtain the current hour of the day in 24 hour time
     var hourFromLocalStorage = key.substring(5); //This statement obtains the hour associated with the save button that was clicked.
     var descFromLocalStorage = localStorage.getItem(key);
+    var divTimeBlockEl1 = document.getElementById(key);
+    console.log(divTimeBlockEl1);
+    var className = "";
 
     if (currentHour < hourFromLocalStorage) {
+       //future
+       className = 'future';
+       modifyElementClass(divTimeBlockEl1, className);
 
     } else if (currentHour > hourFromLocalStorage) {
-
+       // past
+       className = 'past';
+       modifyElementClass(divTimeBlockEl1, className);
     } else {
-
+      //present
+      className = 'present';
+      modifyElementClass(divTimeBlockEl1, className);
     }
    
 
