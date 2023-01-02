@@ -12,7 +12,7 @@ $(function () {
   // useful when saving the description in local storage?
   // 
     var saveButtonEl1 = document.querySelectorAll(".saveBtn"); //This statement obtains all the save button elements
-    var key ="";
+    
     var saveUserInput = function(event) {
       /*
        This function saves the user input- 
@@ -22,7 +22,7 @@ $(function () {
       event.stopPropagation(); //This statement was added to prevent other click handlers further up from receiving the click event
 
       var divEl1Id = this.parentNode.id; //This statement obtains the id of the DIV which contains the button that was clicked
-      key = divEl1Id;
+      var divTimeBlockEl1 = document.getElementById(divEl1Id)
       var textAreaEl1 = this.parentNode.children[1]; //This statement obtains the textarea element that corresponds to the button that was clicked
       var userInput = textAreaEl1.value;  //This statement gets the value of the user input
 
@@ -31,7 +31,7 @@ $(function () {
       console.log(userInput); //This statement outputs the value of the user input
     
       localStorage.setItem(divEl1Id, userInput); //This statement saves the user input associated with the id of the div element that contains the input field into local storage
-      changeElementAttribute();
+      changeElementAttribute(divTimeBlockEl1, divEl1Id, textAreaEl1);
     }
   
   //This statement attaches the on-click handler to each of the save buttons
@@ -49,44 +49,67 @@ $(function () {
   //
 
   var modifyElementClass = function(element, className) {
+    /*
+     This function takes two parameters the timeblock div element 
+     and the CSS class that needs to be added to the element.
+     It removes the current css class associated with the element 
+     and replaces it with the css class passed into this function.
+    */
 
-   var currentCSSClass = element.classList[2];
-   element.classList.remove(currentCSSClass);
-   element.classList.add(className);
-
+   var currentCSSClass = element.classList[2]; //This statement gets the CSS class that needs to be replaced
+   element.classList.remove(currentCSSClass); // This statement removes the CSS class from the list of CSS class for the element
+   element.classList.add(className);  //This statement replaces the removed CSS class with the CSS class passed into this function
+ 
   }
 
 
 
-  var changeElementAttribute = function() {
+  var changeElementAttribute = function(divElement, key, textAreaElement) {
+
+    /*
+     This function uses day.js library to get the current hour of the day in 24 hour format.
+      Then it compares the current hour to the hour associated with the save button that was clicked.
+      Then it calls a helper function to modify the CSS class of the element associated with the save button that was clicked.
+    */
 
     var currentHour = dayjs().hour(); //This statement uses Day.js to obtain the current hour of the day in 24 hour time
     var hourFromLocalStorage = key.substring(5); //This statement obtains the hour associated with the save button that was clicked.
-    var descFromLocalStorage = localStorage.getItem(key);
-    var divTimeBlockEl1 = document.getElementById(key);
-    console.log(divTimeBlockEl1);
-    var className = "";
+    var className = "";  //Initialize CSS classname variable
 
     if (currentHour < hourFromLocalStorage) {
-       //future
+       // Scheduled in future 
        className = 'future';
-       modifyElementClass(divTimeBlockEl1, className);
+       modifyElementClass(divElement, className);
 
     } else if (currentHour > hourFromLocalStorage) {
-       // past
+       // Scheduled in past
        className = 'past';
-       modifyElementClass(divTimeBlockEl1, className);
+       modifyElementClass(divElement, className);
     } else {
-      //present
+      // Scheduled in present
       className = 'present';
-      modifyElementClass(divTimeBlockEl1, className);
+      modifyElementClass(divElement, className);
     }
    
+    textAreaElement.value = setInputValue(key);
 
   }
+
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+
+  var setInputValue = function(objkey) {
+
+    var descFromLocalStorage = localStorage.getItem(objkey);
+    
+    return descFromLocalStorage;
+
+
+  }
+
+  
 });
