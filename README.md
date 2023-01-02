@@ -25,7 +25,7 @@ THEN the saved events persist
 
 ## Mock-Up Page
 
-![Alt text](mock-up.png?raw=true "Third-Party APIs Challenge: Work Day Scheduler Site")
+![Alt text](05-third-party-apis-homework-demo.gif?raw=true "Third-Party APIs Challenge: Work Day Scheduler Site")
 
 ## Third-Party APIs Challenge: Work Day Scheduler Site
 
