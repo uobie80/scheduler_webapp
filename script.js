@@ -100,7 +100,7 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
+ 
 
 
     const localStorageItems = { ...localStorage }; //This statement gets all the key value pair items in local storage and stores it into a new object
@@ -115,5 +115,8 @@ $(function () {
       
     }
 
-
+   // TODO: Add code to display the current date in the header of the page.
+   var pEl1 = document.querySelector("#currentDay"); //This statement obtains the p element
+   var currentDate = new Date(); //This statement gets the current date and time
+   pEl1.textContent = currentDate ; //This statement sets the current date value for the p element in the header.
 });
